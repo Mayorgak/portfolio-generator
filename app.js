@@ -6,12 +6,28 @@ const promptUser = () => {
     {
       type: "input",
       name: "name",
-      message: "What is your name?",
+       message: 'What is your name? (Required)',
+      validate: nameInput => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log('Please enter your name!');
+          return false;
+        }
+      }
     },
     {
       type: "input",
       name: "github",
-      message: "Enter your GitHub Username",
+      message: 'Enter your GitHub Username (Required)',
+      validate: usernameInput => {
+          if (usernameInput) {
+            return true;
+          } else {
+            console.log("Please enter Github Username!");
+            return false;
+          }
+      }
     },
     {
       type: "input",
@@ -22,20 +38,17 @@ const promptUser = () => {
 };
 
 
-promptUser()
-  .then((answers) => console.log(answers))
-  .then(promptProject)
-  .then(projectData => {
-  portfolioData.projects.push(projectData)
-  .then(projectData => {
-      portfolioData.projects.push(projectData);
-      if (projectData.confirmAddProject) {
-        return promptProject(portfolioData);
-      } else {
-        return portfolioData;
-      }
-    });
-})
+// promptUser()
+//   .then((answers) => console.log(answers))
+//   .then(promptProject)
+//   .then(projectData => {
+//       portfolioData.projects.push(projectData);
+//       if (projectData.confirmAddProject) {
+//         return promptProject(portfolioData);
+//       } else {
+//         return portfolioData;
+//       }
+//     });
 
 
 
@@ -43,6 +56,7 @@ const promptProject = portfolioData => {
     // If there's no 'projects' array property, create one
 if (!portfolioData.projects) {
   portfolioData.projects = [];
+
 
 }
   console.log(`
@@ -54,12 +68,28 @@ Add a New Project
     {
       type: "input",
       name: "name",
-      message: "What is the name of your project?",
+      message: "What is the name of your project? (Required)",
+      validate: (projectInput) => {
+        if (projectInput) {
+          return true;
+        } else {
+          console.log("Please enter project name!");
+          return false;
+        }
+      },
     },
     {
       type: "input",
       name: "description",
       message: "Provide a description of the project (Required)",
+      validate: (descriptionInput) => {
+        if (descriptionInput) {
+          return true;
+        } else {
+          console.log("Please enter description! ");
+          return false;
+        }
+      },
     },
     {
       type: "checkbox",
@@ -79,6 +109,14 @@ Add a New Project
       type: "input",
       name: "link",
       message: "Enter the GitHub link to your project. (Required)",
+      validate: (linkInput) => {
+        if (linkInput) {
+          return true;
+        } else {
+          console.log("Please enter link !");
+          return false;
+        }
+      }
     },
     {
       type: "confirm",
@@ -96,7 +134,6 @@ Add a New Project
 };
 
 promptUser()
-  .promptUser()
   .then(promptProject)
   .then(portfolioData => {
     console.log(portfolioData);
