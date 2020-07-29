@@ -1,6 +1,10 @@
 
 const inquirer = require("inquirer");
 
+const fs = require("fs");
+const generatePage = require("./src/page-template.js");
+
+
 const promptUser = () => {
   return inquirer.prompt([
     {
@@ -47,17 +51,6 @@ const promptUser = () => {
 };
 
 
-// promptUser()
-//   .then((answers) => console.log(answers))
-//   .then(promptProject)
-//   .then(projectData => {
-//       portfolioData.projects.push(projectData);
-//       if (projectData.confirmAddProject) {
-//         return promptProject(portfolioData);
-//       } else {
-//         return portfolioData;
-//       }
-//     });
 
 
 
